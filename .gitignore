@@ -23,3 +23,4 @@
 /nbdist/
 /.nb-gradle/
 /build/
+/src/main/resources/File/output

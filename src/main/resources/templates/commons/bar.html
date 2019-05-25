@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="nav-tabs navbar-expand-sm bg-dark navbar-dark nav-pills" th:fragment="topbar">
+      <ul class="navbar-nav" id="topbar">
+    <li class="navbar-brand disabled col-9">基于KNN算法的入侵检测系统</li>
+        <li class="nav-item" id="user_manage_li">
+          <a class="nav-link" th:href="@{/ids}" th:class="${activeUri=='ids'?'nav-link active':'nav-link'}">IDS功能</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" th:href="@{/KddCup99}" id="announcement_manage_li" th:class="${activeUri=='kddcup99'?'nav-link active':'nav-link'}">数据集分析</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  th:href="@{/system}" id="suggest_manage_li" th:class="${activeUri=='system'?'nav-link active':'nav-link'}">系统分析</a>
+        </li>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" th:href="@{/fix}" id="fix_manage_li" th:class="${activeUri=='fix'?'nav-link active':'nav-link'}">报修管理</a>-->
+    <!--    </li>-->
+    <!--<li class="nav-item">-->
+        <!--      <a class="nav-link" th:href="@{/lost_and_found}" id="lost_and_found_li" th:class="${activeUri=='lost_and_found'?'nav-link active':'nav-link'}">失物招领管理</a>-->
+    <!--</li>-->
+      </ul>
+</nav>
+<nav class="nav-tabs navbar-expand-sm bg-dark navbar-dark nav-pills" th:fragment="bottombar"></nav>
+</body>
+</html>

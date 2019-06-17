@@ -7,11 +7,118 @@
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
 
     <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
-
+    <style>
+        .footer{background:#fff ;position:absolute;bottom:0;width:100%;height:90px;background-color: #343A40;}
+    </style>
 </head>
 <body>
 <!-- 黑底白字 -->
-<div th:replace="commons/bar::topbar(activeUri='')" ></div>
+<div th:replace="commons/bar::topbar(activeUri='main')" ></div>
+<br/>
+<label class="card bg-primary col-3">KDDCup99数据示例</label>
+<br/>
+<br/>
+
+
+
+<div class="table-responsive" id="user_manage">
+    <table class="table text-nowrap table-striped table-sm table-bordered">
+        <thead>
+        <tr>
+            <th>duration</th>
+            <th>protocol_type</th>
+            <th>service</th>
+            <th>flag</th>
+            <th>src_bytes</th>
+            <th>dst_bytes</th>
+            <th>land</th>
+            <th>wrong_fragment</th>
+            <th>urgent</th>
+            <th>hot</th>
+            <th>num_failed_logins</th>
+            <th>logged_in</th>
+            <th>num_compromised</th>
+            <th>root_shell</th>
+            <th>su_attempted</th>
+            <th>num_root</th>
+            <th>num_file_creations</th>
+            <th>num_shells</th>
+            <th>num_access_files</th>
+            <th>num_outbound_cmds</th>
+            <th>is_hot_login</th>
+            <th>is_guest_login</th>
+            <th>count</th>
+            <th>srv_count</th>
+            <th>serror_rate</th>
+            <th>srv_serror_rate</th>
+            <th>rerror_rate</th>
+            <th>srv_rerror_rate</th>
+            <th>same_srv_rate</th>
+            <th>diff_srv_rate</th>
+            <th>srv_diff_host_rate</th>
+            <th>dst_host_count</th>
+            <th>dst_host_srv_count</th>
+            <th>dst_host_same_srv_rate</th>
+            <th>dst_host_diff_srv_rate</th>
+            <th>dst_host_same_src_port_rate</th>
+            <th>dst_host_srv_diff_host_rate</th>
+            <th>dst_host_serror_rate</th>
+            <th>dst_host_srv_serror_rate</th>
+            <th>dst_host_rerror_rate</th>
+            <th>dst_host_srv_rerror_rate</th>
+            <th>label</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kddData:${application.kddDataList}">
+            <td th:text="${kddData.duration}">duration</td>
+            <td th:text="${kddData.protocol_type}">protocol_type</td>
+            <td th:text="${kddData.service}">service</td>
+            <td th:text="${kddData.flag}">flag</td>
+            <td th:text="${kddData.src_bytes}">src_bytes</td>
+            <td th:text="${kddData.dst_bytes}">dst_bytes</td>
+            <td th:text="${kddData.land}">land</td>
+            <td th:text="${kddData.wrong_fragment}">wrong_fragment</td>
+            <td th:text="${kddData.urgent}">urgent</td>
+            <td th:text="${kddData.hot}">hot</td>
+            <td th:text="${kddData.num_failed_logins}">num_failed_logins</td>
+            <td th:text="${kddData.logged_in}">logged_in</td>
+            <td th:text="${kddData.num_compromised}">num_compromised</td>
+            <td th:text="${kddData.root_shell}">root_shell</td>
+            <td th:text="${kddData.su_attempted}">su_attempted</td>
+            <td th:text="${kddData.num_root}">num_root</td>
+            <td th:text="${kddData.num_file_creations}">num_file_creations</td>
+            <td th:text="${kddData.num_shells}">num_shells</td>
+            <td th:text="${kddData.num_access_files}">num_access_files</td>
+            <td th:text="${kddData.num_outbound_cmds}">num_outbound_cmds</td>
+            <td th:text="${kddData.is_hot_login}">is_hot_login</td>
+            <td th:text="${kddData.is_guest_login}">is_guest_login</td>
+            <td th:text="${kddData.count}">count</td>
+            <td th:text="${kddData.srv_count}">srv_count</td>
+            <td th:text="${kddData.serror_rate}">serror_rate</td>
+            <td th:text="${kddData.srv_serror_rate}">srv_serror_rate</td>
+            <td th:text="${kddData.rerror_rate}">rerror_rate</td>
+            <td th:text="${kddData.srv_rerror_rate}">srv_rerror_rate</td>
+            <td th:text="${kddData.same_srv_rate}">same_srv_rate</td>
+            <td th:text="${kddData.diff_srv_rate}">diff_srv_rate</td>
+            <td th:text="${kddData.srv_diff_host_rate}">srv_diff_host_rate</td>
+            <td th:text="${kddData.dst_host_count}">dst_host_count</td>
+            <td th:text="${kddData.dst_host_srv_count}">dst_host_srv_count</td>
+            <td th:text="${kddData.dst_host_same_srv_rate}">dst_host_same_srv_rate</td>
+            <td th:text="${kddData.dst_host_diff_srv_rate}">dst_host_diff_srv_rate</td>
+            <td th:text="${kddData.dst_host_same_src_port_rate}">dst_host_same_src_port_rate</td>
+            <td th:text="${kddData.dst_host_srv_diff_host_rate}">dst_host_srv_diff_host_rate</td>
+            <td th:text="${kddData.dst_host_serror_rate}">dst_host_serror_rate</td>
+            <td th:text="${kddData.dst_host_srv_serror_rate}">dst_host_srv_serror_rate</td>
+            <td th:text="${kddData.dst_host_rerror_rate}">dst_host_rerror_rate</td>
+            <td th:text="${kddData.dst_host_srv_rerror_rate}">dst_host_srv_rerror_rate</td>
+            <td th:text="${kddData.label}">dst_host_srv_rerror_rate</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="footer"></div>
 </body>
 
 </html>

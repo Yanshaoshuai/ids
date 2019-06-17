@@ -20,7 +20,7 @@ public class MyAppRunner implements ApplicationRunner {//服务器启动时执�
     public void run(ApplicationArguments args) throws Exception {
         ExecutorService exec= Executors.newFixedThreadPool(1);
         Future<MinMax[]> future=exec.submit(()->
-            Util.getMinMax(MyAppRunner.class.getResource("/File/kddcup.data_10_percent_corrected_NOString").getFile())
+            Util.getMinMax("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected_NOString")
         );
         application.setAttribute("minMaxesFuture",future);
         knnService.init();

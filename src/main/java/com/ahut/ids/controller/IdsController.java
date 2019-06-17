@@ -1,5 +1,6 @@
 package com.ahut.ids.controller;
 
+import com.ahut.ids.model.KDDData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.*;
 
 @Controller
@@ -22,8 +25,64 @@ public class IdsController {
     @Autowired
     KnnService knnService;
     private static final Logger logger = LoggerFactory.getLogger(IdsController.class);
-    @GetMapping({"/index","ids"})
+    @GetMapping("/index")
     public String view(Model model) throws IOException {
+        List<KDDData> kddDataList=new LinkedList<>();
+        int i=0;
+        BufferedReader bf=new BufferedReader(new FileReader("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\corrected"));
+        String line="";
+        while ((i++<=13)&&((line=bf.readLine())!=null)){
+                String []kddDataArray=line.split(",");
+                KDDData kddData=new KDDData();
+                kddData.setDuration(kddDataArray[0]);
+                kddData.setProtocol_type(kddDataArray[1]);
+                kddData.setService(kddDataArray[2]);
+                kddData.setFlag(kddDataArray[3]);
+                kddData.setSrc_bytes(kddDataArray[4]);
+                kddData.setDst_bytes(kddDataArray[5]);
+                kddData.setLand(kddDataArray[6]);
+                kddData.setWrong_fragment(kddDataArray[7]);
+                kddData.setUrgent(kddDataArray[8]);
+                kddData.setHot(kddDataArray[9]);
+                kddData.setNum_failed_logins(kddDataArray[10]);
+                kddData.setLogged_in(kddDataArray[11]);
+                kddData.setNum_compromised(kddDataArray[12]);
+                kddData.setRoot_shell(kddDataArray[13]);
+                kddData.setSu_attempted(kddDataArray[14]);
+                kddData.setNum_root(kddDataArray[15]);
+                kddData.setNum_file_creations(kddDataArray[16]);
+                kddData.setNum_shells(kddDataArray[17]);
+                kddData.setNum_access_files(kddDataArray[18]);
+                kddData.setNum_outbound_cmds(kddDataArray[19]);
+                kddData.setIs_hot_login(kddDataArray[20]);
+                kddData.setIs_guest_login(kddDataArray[21]);
+                kddData.setCount(kddDataArray[22]);
+                kddData.setSrv_count(kddDataArray[23]);
+                kddData.setSerror_rate(kddDataArray[24]);
+                kddData.setSrv_serror_rate(kddDataArray[25]);
+                kddData.setRerror_rate(kddDataArray[26]);
+                kddData.setSrv_rerror_rate(kddDataArray[27]);
+                kddData.setSame_srv_rate(kddDataArray[28]);
+                kddData.setDiff_srv_rate(kddDataArray[29]);
+                kddData.setSrv_diff_host_rate(kddDataArray[30]);
+                kddData.setDst_host_count(kddDataArray[31]);
+                kddData.setDst_host_srv_count(kddDataArray[32]);
+                kddData.setDst_host_same_srv_rate(kddDataArray[33]);
+                kddData.setDst_host_diff_srv_rate(kddDataArray[34]);
+                kddData.setDst_host_same_src_port_rate(kddDataArray[35]);
+                kddData.setDst_host_srv_diff_host_rate(kddDataArray[36]);
+                kddData.setDst_host_serror_rate(kddDataArray[37]);
+                kddData.setDst_host_srv_serror_rate(kddDataArray[38]);
+                kddData.setDst_host_rerror_rate(kddDataArray[39]);
+                kddData.setDst_host_srv_rerror_rate(kddDataArray[40]);
+                kddData.setLabel(kddDataArray[41]);
+                kddDataList.add(kddData);
+        }
+        application.setAttribute("kddDataList",kddDataList);
+        return "index";
+    }
+    @GetMapping("/ids")
+    public String ids(Model model) throws IOException {
 //        knnService.init();
 
 //        InputStream inputStream=this.getClass().getResourceAsStream("/File/record");
@@ -62,6 +121,8 @@ public class IdsController {
     }
     @PutMapping("/predict")
     @ResponseBody public String predict(@RequestParam String input) throws IOException, ExecutionException, InterruptedException {
+        System.err.println(input);
+//        input="0,icmp,ecr_i,SF,1032,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,511,511,0.00,0.00,0.00,0.00,1.00,0.00,0.00,255,255,1.00,0.00,1.00,0.00,0.00,0.00,0.00,0.00";
         return knnService.judge(input,9);
     }
     @PostMapping("/reset")

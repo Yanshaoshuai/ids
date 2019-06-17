@@ -86,9 +86,9 @@ public class KnnServiceImpl implements KnnService{
         knn.setTestFileName("correctedxx");
         knn.setAccuracy(0.99);
         knn.setPerfectK(9);
-        InputStream trainStream=this.getClass().getResourceAsStream("/File/kddcup.data_10_percent_corrected_NOStringxx");
+        InputStream trainStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected_NOStringxx");
 
-        InputStream testStream=this.getClass().getResourceAsStream("/File/correctedxx");
+        InputStream testStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\correctedxx");
         // Load the train and test datasets
         trainDataset = new KddDataset().load(trainStream);
         testDataset = new KddDataset().load(testStream);
@@ -100,8 +100,8 @@ public class KnnServiceImpl implements KnnService{
     }
 
     public void kddCup99Analysis() throws IOException {
-        InputStream trainStream=this.getClass().getResourceAsStream("/File/kddcup.data_10_percent_corrected_NOStringxx");
-        InputStream testStream=this.getClass().getResourceAsStream("/File/correctedxx");
+        InputStream trainStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected_NOStringxx");
+        InputStream testStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\correctedxx");
         Map<String, Integer> trainLabelCountMap = Util.anylisysHackType(trainStream);
         Map<String, Integer> testLabelCountMap = Util.anylisysHackType(testStream);
         Collection<String> trainSet=trainLabelCountMap.keySet();
@@ -201,12 +201,12 @@ public class KnnServiceImpl implements KnnService{
         Classifier classifier;
         File file=new File("output");
         try{
-        MinMax[] minMax = Util.getMinMax(KnnServiceImpl.class.getResource("/File/kddcup.data_10_percent_corrected_NOString").getFile());
+        MinMax[] minMax = Util.getMinMax("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected_NOString");
         PrintWriter printWriter=new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
-        for(int k=9;k<=20;k++){
+        for(int k=1;k<=20;k++){
             printWriter.println("k="+k+"开始");
-            InputStream trainStream=new FileInputStream("/File/kddcup.data_10_percent_corrected_NOStringxx");
-            InputStream testStream=new FileInputStream("/File/corrected");
+            InputStream trainStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected_NOStringxx");
+            InputStream testStream=new FileInputStream("C:\\Users\\yan\\Desktop\\aa\\ids\\ids\\src\\main\\resources\\File\\kddcup.data_10_percent_corrected");
             trainDataset = new KddDataset().load(trainStream);
             classifier = new BruteForceClassifier(new EuclideanDistance());
             classifier.fit(trainDataset);

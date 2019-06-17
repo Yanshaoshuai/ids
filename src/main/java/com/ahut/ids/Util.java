@@ -207,7 +207,7 @@ public class Util {
     }
 
     /**
-     * 封装result工具类
+     * 封装result工具方法
      * @param list
      * @param result
      */

@@ -2,55 +2,129 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>IDS功能</title>
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
     <script src="jquery-ajax-blob-arraybuffer.js"></script>
     <style>
-        .footer{background:#fff ;position:absolute;bottom:0;width:100%;height:150px;background-color: dimgrey;}
+        .footer{background:#fff ;position:absolute;bottom:0;width:100%;height:90px;background-color: #343A40;}
     </style>
 </head>
 <body>
 <div>
     <!-- 黑底白字 -->
     <div th:replace="commons/bar::topbar(activeUri='ids')"></div>
-
     <div class="container">
         <div class="row">
 
             <main role="main" class="col-lg-10 pt-5">
                     <div class="form-group">
                         <label class="card bg-info col-3">预测输入</label>
-                        <input id="input" name="input" type="text" class="form-control col-12" placeholder="预测输入" th:value="${announcement!=null}?${announcement.title}">
+                        <div class="form-inline col-12">
+                            <input id="duration" name="input" type="text" class="form-control col-3" placeholder="duration" >
+                            <input id="protocol_type" name="input" type="text" class="form-control col-3" placeholder="protocol_type" >
+                            <input id="service" name="input" type="text" class="form-control col-3" placeholder="service" >
+                            <input id="flag" name="input" type="text" class="form-control col-3" placeholder="flag" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="src_bytes" name="input" type="text" class="form-control col-3" placeholder="src_bytes" >
+                            <input id="dst_bytes" name="input" type="text" class="form-control col-3" placeholder="dst_bytes" >
+                            <input id="land" name="input" type="text" class="form-control col-3" placeholder="land" >
+                            <input id="wrong_fragment" name="input" type="text" class="form-control col-3" placeholder="wrong_fragment" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="urgent" name="input" type="text" class="form-control col-3" placeholder="urgent" >
+                            <input id="hot" name="input" type="text" class="form-control col-3" placeholder="hot" >
+                            <input id="num_failed_logins" name="input" type="text" class="form-control col-3" placeholder="num_failed_logins" >
+                            <input id="logged_in" name="input" type="text" class="form-control col-3" placeholder="logged_in" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="num_compromised" name="input" type="text" class="form-control col-3" placeholder="num_compromised" >
+                            <input id="root_shell" name="input" type="text" class="form-control col-3" placeholder="root_shell" >
+                            <input id="su_attempted" name="input" type="text" class="form-control col-3" placeholder="su_attempted" >
+                            <input id="num_root" name="input" type="text" class="form-control col-3" placeholder="num_root" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="num_file_creations" name="input" type="text" class="form-control col-3" placeholder="num_file_creations" >
+                            <input id="num_shells" name="input" type="text" class="form-control col-3" placeholder="num_shells" >
+                            <input id="num_access_files" name="input" type="text" class="form-control col-3" placeholder="num_access_files" >
+                            <input id="num_outbound_cmds" name="input" type="text" class="form-control col-3" placeholder="num_outbound_cmds" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="is_hot_login" name="input" type="text" class="form-control col-3" placeholder="is_hot_login" >
+                            <input id="is_guest_login" name="input" type="text" class="form-control col-3" placeholder="is_guest_login" >
+                            <input id="count" name="input" type="text" class="form-control col-3" placeholder="count" >
+                            <input id="srv_count" name="input" type="text" class="form-control col-3" placeholder="srv_count" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="serror_rate" name="input" type="text" class="form-control col-3" placeholder="serror_rate" >
+                            <input id="srv_serror_rate" name="input" type="text" class="form-control col-3" placeholder="srv_serror_rate" >
+                            <input id="rerror_rate" name="input" type="text" class="form-control col-3" placeholder="rerror_rate" >
+                            <input id="srv_rerror_rate" name="input" type="text" class="form-control col-3" placeholder="srv_rerror_rate" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="same_srv_rate" name="input" type="text" class="form-control col-3" placeholder="same_srv_rate" >
+                            <input id="diff_srv_rate" name="input" type="text" class="form-control col-3" placeholder="diff_srv_rate" >
+                            <input id="srv_diff_host_rate" name="input" type="text" class="form-control col-3" placeholder="srv_diff_host_rate" >
+                            <input id="dst_host_count" name="input" type="text" class="form-control col-3" placeholder="dst_host_count" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="dst_host_srv_count" name="input" type="text" class="form-control col-3" placeholder="dst_host_srv_count" >
+                            <input id="dst_host_same_srv_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_same_srv_rate" >
+                            <input id="dst_host_diff_srv_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_diff_srv_rate" >
+                            <input id="dst_host_same_src_port_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_same_src_port_rate" >
+
+                        </div>
+                        <div class="form-inline col-12">
+                            <input id="dst_host_srv_diff_host_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_srv_diff_host_rate" >
+                            <input id="dst_host_serror_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_serror_rate" >
+                            <input id="dst_host_srv_serror_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_srv_serror_rate" >
+                            <input id="dst_host_rerror_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_rerror_rate" >
+                        </div>
+                        <div class="form-inline col-12">
+
+                            <input id="dst_host_srv_rerror_rate" name="input" type="text" class="form-control col-3" placeholder="dst_host_srv_rerror_rate" >
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="card bg-info col-3">预测结果</label>
-                        <input id="result" name="result" type="text" class="form-control" placeholder="预测输入" th:value="${announcement!=null}?${announcement.title}">
+                        <input id="result" name="result" type="text" class="form-control" placeholder="预测结果" >
                     </div>
-                    <div class="form-group">
-                        <label class="card bg-info col-3">系统参数</label>
-                        <div class="col-sm-6">
-                            <label class="col-sm-3">k值</label>
 
-                        </div>
-                        <label class="col-sm-3">准确度</label>
-                        <div>
-                            <label class="col-sm-3">训练集</label>
-                            <!--<select class="form-control" style="width: 200px" name="userType">-->
-                                <!--<option th:selected="${user!=null}?${user.userType == 0}" value="0">普通用户</option>-->
-                                <!--<option th:selected="${user!=null}?${user.userType == 1}" value="1">管理员</option>-->
-                            <!--</select>-->
-                        </div>
-                        <label class="col-sm-3">推荐k值</label>
+                    <div class="form-group">
+                        <!--<label class="card bg-info col-3">系统参数</label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<label class="col-sm-3">k值</label>-->
+
+                        <!--</div>-->
+                        <!--<label class="col-sm-3">准确度</label>-->
+                        <!--<div>-->
+                            <!--<label class="col-sm-3">训练集</label>-->
+                            <!--&lt;!&ndash;<select class="form-control" style="width: 200px" name="userType">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option th:selected="${user!=null}?${user.userType == 0}" value="0">普通用户</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option th:selected="${user!=null}?${user.userType == 1}" value="1">管理员</option>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<label class="col-sm-3">推荐k值</label>-->
                         <form  id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
                             <input class="form-control-file" type="file" name="test"/>
                         </form>
                     </div>
 
+
+
                 <button type="submit" class="btn btn-primary predict" >预测</button>
-                <button type="submit" class="btn btn-primary reset" >重置系统</button>
-                <button   class="btn btn-xs btn-danger deleteBtn mark" >标记上传文件</button>
+                <!--<button type="submit" class="btn btn-primary reset" >重置系统</button>-->
+                <button   class="btn btn-xs btn-primary deleteBtn mark" >标记上传文件</button>
 
             </main>
         </div>
@@ -64,13 +138,25 @@
         return false;
     });
     $(".predict").click(function(){
+
+        var str=$("#duration").val()+","+$("#protocol_type").val()+","+$("#service").val()+","+$("#flag").val()
+            +","+$("#src_bytes").val()+","+$("#dst_bytes").val()+","+$("#land").val()+","+$("#wrong_fragment").val()
+            +","+$("#urgent").val()+","+$("#hot").val()+","+$("#num_failed_logins").val()+","+$("#logged_in").val()
+            +","+$("#num_compromised").val()+","+$("#root_shell").val()+","+$("#su_attempted").val()+","+$("#num_root").val()
+            +","+$("#num_file_creations").val()+","+$("#num_shells").val()+","+$("#num_access_files").val()+","+$("#num_outbound_cmds").val()
+            +","+$("#is_hot_login").val()+","+$("#is_guest_login").val()+","+$("#count").val()+","+$("#srv_count").val()
+            +","+$("#serror_rate").val()+","+$("#srv_serror_rate").val()+","+$("#rerror_rate").val()+","+$("#srv_rerror_rate").val()
+            +","+$("#same_srv_rate").val()+","+$("#diff_srv_rate").val()+","+$("#srv_diff_host_rate").val()+","+$("#dst_host_count").val()
+            +","+$("#dst_host_srv_count").val()+","+$("#dst_host_same_srv_rate").val()+","+$("#dst_host_diff_srv_rate").val()+","+$("#dst_host_same_src_port_rate").val()
+            +","+$("#dst_host_srv_diff_host_rate").val()+","+$("#dst_host_serror_rate").val()+","+$("#dst_host_srv_serror_rate").val()+","+$("#dst_host_rerror_rate").val()
+            +","+$("#dst_host_srv_rerror_rate").val();
         $.ajax({
             url: "/ids/predict",
             type : "post",
             cache:false,
             data : {
                 _method : "put",
-                input:$("#input").val()
+                input:str
             },
             success : function(data){
                 $("#result").val(data);

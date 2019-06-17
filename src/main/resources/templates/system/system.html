@@ -9,7 +9,7 @@
     <!-- 引入 echarts.js -->
     <script type="text/javascript" th:inline="javascript" th:src="@{/echarts.min.js}" ></script>
     <style>
-        .footer{background:#fff ;position:absolute;bottom:0;width:100%;height:150px;background-color: dimgrey;}
+        .footer{background:#fff ;position:absolute;bottom:0;width:100%;height:90px;background-color: #343A40;}
     </style>
 </head>
 <body>
@@ -30,7 +30,7 @@
     // 指定图表的配置项和数据
     option = {
         title: {
-            text: '折线图堆叠'
+            text: 'k-分类评估参数堆叠图'
         },
         tooltip: {
             trigger: 'axis'
